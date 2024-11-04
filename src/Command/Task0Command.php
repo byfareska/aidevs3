@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Utility\ResultSender;
+use App\AiDevs\Poligon;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,7 +15,7 @@ class Task0Command extends Command
 {
     public function __construct(
         private HttpClientInterface $httpClient,
-        private ResultSender $resultSender,
+        private Poligon $poligon,
         #[Autowire(env: 'TASK0_ENDPOINT')]
         private string $endpoint,
         ?string $name = null
@@ -28,7 +28,7 @@ class Task0Command extends Command
     {
         $response = $this->httpClient->request('GET', $this->endpoint);
         $content = array_filter(preg_split('/\r\n|\r|\n/', $response->getContent()));
-        dump($this->resultSender->sendAndDecodeJsonBody('POLIGON', $content));
+        dump($this->poligon->sendAndDecodeJsonBody('POLIGON', $content));
         
         return Command::SUCCESS;
     }

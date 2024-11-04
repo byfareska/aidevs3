@@ -22,3 +22,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    OpenAI\Contracts\ClientContract:
+        factory: ['@App\Factory\OpenAiClientFactory', 'create']
+    ModelflowAi\Chat\AIChatRequestHandlerInterface:
+        factory: ['@App\Factory\AIChatRequestHandlerFactory', 'create']
+    ModelflowAi\OpenaiAdapter\Chat\OpenaiChatAdapterFactory:

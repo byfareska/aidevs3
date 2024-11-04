@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\Utility;
+namespace App\AiDevs;
 
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
-final readonly class ResultSender
+final readonly class Poligon
 {
     public function __construct(
         private HttpClientInterface $httpClient,
