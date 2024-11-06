@@ -10,7 +10,7 @@ final readonly class Xyz
     public function __construct(
         private HttpClientInterface $httpClient,
 
-        #[Autowire(env: 'XYZ_VERIFY_ENDPOINT')]
+        #[Autowire(env: 'TASK1_VERIFY_ENDPOINT')]
         private string $endpoint,
     )
     {
@@ -23,7 +23,7 @@ final readonly class Xyz
                 "text" => $text,
                 "msgID" => $msgId,
             ]
-        ])->getContent(), false, 512, JSON_THROW_ON_ERROR);
+        ])->getContent(false), false, 512, JSON_THROW_ON_ERROR);
 
         return new XyzResponse((int)$body->msgID, (string)$body->text);
     }

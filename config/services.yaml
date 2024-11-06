@@ -27,3 +27,4 @@ services:
     ModelflowAi\Chat\AIChatRequestHandlerInterface:
         factory: ['@App\Factory\AIChatRequestHandlerFactory', 'create']
     ModelflowAi\OpenaiAdapter\Chat\OpenaiChatAdapterFactory:
+    Symfony\Component\DependencyInjection\ExpressionLanguage:

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\AiDevs\Poligon;
+use App\AiDevs\ResultSender;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,13 +11,15 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[AsCommand(name: 'task:0', description: 'Task 0')]
-class Task0Command extends Command
+final class Task0Command extends Command
 {
     public function __construct(
-        private HttpClientInterface $httpClient,
-        private Poligon $poligon,
+        private readonly HttpClientInterface $httpClient,
+        private readonly ResultSender $poligon,
+        #[Autowire(env: 'TASK0_VERIFY_ENDPOINT')]
+        private readonly string $endpointVerify,
         #[Autowire(env: 'TASK0_ENDPOINT')]
-        private string $endpoint,
+        private readonly string $endpointData,
         ?string $name = null
     )
     {
@@ -26,10 +28,10 @@ class Task0Command extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $response = $this->httpClient->request('GET', $this->endpoint);
+        $response = $this->httpClient->request('GET', $this->endpointData);
         $content = array_filter(preg_split('/\r\n|\r|\n/', $response->getContent()));
-        dump($this->poligon->sendAndDecodeJsonBody('POLIGON', $content));
-        
+        dump($this->poligon->sendAndDecodeJsonBody($this->endpointVerify, 'POLIGON', $content));
+
         return Command::SUCCESS;
     }
 }
