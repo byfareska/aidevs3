@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\DependencyInjection\ExpressionLanguage;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-#[AsCommand(name: 'task:3', description: 'Task 2: 2024-11-06')]
+#[AsCommand(name: 'task:3', description: 'Task 3: 2024-11-06')]
 final class Task3Command extends Command
 {
     public function __construct(
