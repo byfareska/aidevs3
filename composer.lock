@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d626806d12be72c5fa8d210a3022edaa",
+    "content-hash": "68da00ef4e5e690c87e708eef48cf106",
     "packages": [
         {
             "name": "masterminds/html5",
@@ -72,6 +72,68 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
             },
             "time": "2024-03-31T07:05:07+00:00"
+        },
+        {
+            "name": "modelflow-ai/api-client",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/modelflow-ai/api-client.git",
+                "reference": "ca3b198c9e5076878f5523dfd41c834e07bbe06f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/modelflow-ai/api-client/zipball/ca3b198c9e5076878f5523dfd41c834e07bbe06f",
+                "reference": "ca3b198c9e5076878f5523dfd41c834e07bbe06f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "symfony/http-client": "^6.4 || ^7.0",
+                "webmozart/assert": "^1.11"
+            },
+            "require-dev": {
+                "asapo/remove-vendor-plugin": "^0.1",
+                "jangregor/phpstan-prophecy": "^1.0",
+                "php-cs-fixer/shim": "^3.15",
+                "phpspec/prophecy-phpunit": "^2.0@dev",
+                "phpstan/extension-installer": "^1.2",
+                "phpstan/phpstan": "^1.10, <1.10.55",
+                "phpstan/phpstan-phpunit": "^1.3@stable",
+                "phpunit/phpunit": "^10.3",
+                "rector/rector": "^0.18.1"
+            },
+            "type": "library",
+            "extra": {
+                "remove-folders": [
+                    "modelflow-ai/*/vendor"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "ModelflowAi\\ApiClient\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes Wachter",
+                    "email": "johannes@sulu.io"
+                }
+            ],
+            "description": "Base classes which can be used to build an api-client.",
+            "keywords": [
+                "api",
+                "client"
+            ],
+            "support": {
+                "issues": "https://github.com/modelflow-ai/api-client/issues",
+                "source": "https://github.com/modelflow-ai/api-client/tree/0.2.1"
+            },
+            "time": "2024-11-10T19:58:34+00:00"
         },
         {
             "name": "modelflow-ai/chat",
@@ -207,6 +269,142 @@
                 "source": "https://github.com/modelflow-ai/decision-tree/tree/0.2.0"
             },
             "time": "2024-08-25T18:33:32+00:00"
+        },
+        {
+            "name": "modelflow-ai/ollama",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/modelflow-ai/ollama.git",
+                "reference": "22fcd7c7d5d8c4cf7f61d1d2ddf2d40387b8a9b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/modelflow-ai/ollama/zipball/22fcd7c7d5d8c4cf7f61d1d2ddf2d40387b8a9b3",
+                "reference": "22fcd7c7d5d8c4cf7f61d1d2ddf2d40387b8a9b3",
+                "shasum": ""
+            },
+            "require": {
+                "modelflow-ai/api-client": "^0.2",
+                "php": "^8.2",
+                "webmozart/assert": "^1.11"
+            },
+            "require-dev": {
+                "asapo/remove-vendor-plugin": "^0.1",
+                "jangregor/phpstan-prophecy": "^1.0",
+                "php-cs-fixer/shim": "^3.15",
+                "phpspec/prophecy-phpunit": "^2.1@stable",
+                "phpstan/extension-installer": "^1.2",
+                "phpstan/phpstan": "^1.10, <1.10.55",
+                "phpstan/phpstan-phpunit": "^1.3@stable",
+                "phpunit/phpunit": "^10.3",
+                "rector/rector": "^0.18.1"
+            },
+            "type": "library",
+            "extra": {
+                "remove-folders": [
+                    "modelflow-ai/*/vendor"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "ModelflowAi\\Ollama\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes Wachter",
+                    "email": "johannes@sulu.io"
+                }
+            ],
+            "description": "Client for ollama API.",
+            "keywords": [
+                "ai",
+                "api",
+                "client",
+                "ollama"
+            ],
+            "support": {
+                "issues": "https://github.com/modelflow-ai/ollama/issues",
+                "source": "https://github.com/modelflow-ai/ollama/tree/0.2.1"
+            },
+            "time": "2024-11-10T19:58:34+00:00"
+        },
+        {
+            "name": "modelflow-ai/ollama-adapter",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/modelflow-ai/ollama-adapter.git",
+                "reference": "d837b4d5c3686f94a69dbe853a4d668b3d9005b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/modelflow-ai/ollama-adapter/zipball/d837b4d5c3686f94a69dbe853a4d668b3d9005b6",
+                "reference": "d837b4d5c3686f94a69dbe853a4d668b3d9005b6",
+                "shasum": ""
+            },
+            "require": {
+                "modelflow-ai/ollama": "^0.2",
+                "php": "^8.2",
+                "webmozart/assert": "^1.11"
+            },
+            "require-dev": {
+                "asapo/remove-vendor-plugin": "^0.1",
+                "jangregor/phpstan-prophecy": "^1.0",
+                "modelflow-ai/chat": "^0.2",
+                "modelflow-ai/completion": "^0.2",
+                "modelflow-ai/embeddings": "^0.2",
+                "modelflow-ai/prompt-template": "^0.2",
+                "php-cs-fixer/shim": "^3.15",
+                "phpspec/prophecy-phpunit": "^2.1@stable",
+                "phpstan/extension-installer": "^1.2",
+                "phpstan/phpstan": "^1.10, <1.10.55",
+                "phpstan/phpstan-phpunit": "^1.3@stable",
+                "phpunit/phpunit": "^10.3",
+                "rector/rector": "^0.18.1",
+                "symfony/dotenv": "^7.2"
+            },
+            "suggest": {
+                "modelflow-ai/embeddings": "To use the embeddings."
+            },
+            "type": "library",
+            "extra": {
+                "remove-folders": [
+                    "modelflow-ai/*/vendor"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "ModelflowAi\\OllamaAdapter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes Wachter",
+                    "email": "johannes@sulu.io"
+                }
+            ],
+            "description": "Integrates the ollama ecosystem into modelflow-ai.",
+            "keywords": [
+                "ai",
+                "llama2",
+                "modelflow-ai",
+                "ollama"
+            ],
+            "support": {
+                "issues": "https://github.com/modelflow-ai/ollama-adapter/issues",
+                "source": "https://github.com/modelflow-ai/ollama-adapter/tree/0.2.1"
+            },
+            "time": "2024-11-10T19:58:34+00:00"
         },
         {
             "name": "modelflow-ai/openai-adapter",
