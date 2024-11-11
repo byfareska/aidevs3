@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(name: 'task:4', description: 'Task 4: 2024-11-07')]
-class Task4Command extends Command
+final class Task4Command extends TaskSolution
 {
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

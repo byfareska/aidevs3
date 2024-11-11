@@ -1,0 +1,13 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - .:/opt/app
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ./var/ollama:/root/.ollama
+    ports:
+      - "11434:11434"

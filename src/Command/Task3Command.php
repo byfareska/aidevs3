@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ExpressionLanguage;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[AsCommand(name: 'task:3', description: 'Task 3: 2024-11-06')]
-final class Task3Command extends Command
+final class Task3Command extends TaskSolution
 {
     public function __construct(
         private readonly HttpClientInterface $httpClient,

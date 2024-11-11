@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Panther\Client;
 
 #[AsCommand(name: 'task:1', description: 'Task 1: 2024-11-04')]
-class Task1Command extends Command
+final class Task1Command extends TaskSolution
 {
     private const string QUESTION_SELECTOR = '#human-question';
 

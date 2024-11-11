@@ -14,7 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(name: 'task:2', description: 'Task 2: 2024-11-05')]
-class Task2Command extends Command
+final class Task2Command extends TaskSolution
 {
     public function __construct(
         private readonly Xyz $xyz,

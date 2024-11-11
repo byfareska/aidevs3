@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[AsCommand(name: 'task:0', description: 'Task 0')]
-final class Task0Command extends Command
+final class Task0Command extends TaskSolution
 {
     public function __construct(
         private readonly HttpClientInterface $httpClient,

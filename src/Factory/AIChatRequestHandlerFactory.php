@@ -11,11 +11,18 @@ use ModelflowAi\DecisionTree\DecisionTree;
 use ModelflowAi\Ollama\Ollama;
 use ModelflowAi\OllamaAdapter\Chat\OllamaChatAdapter;
 use ModelflowAi\OpenaiAdapter\Chat\OpenaiChatAdapterFactory;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final readonly class AIChatRequestHandlerFactory
 {
+
     public function __construct(
         private OpenaiChatAdapterFactory $openaiChatAdapterFactory,
+        private HttpClientInterface $httpClient,
+
+        #[Autowire(env: 'OLLAMA_ENDPOINT')]
+        private string $ollamaEndpoint,
     )
     {
     }
@@ -23,7 +30,7 @@ final readonly class AIChatRequestHandlerFactory
     public function create(): AIChatRequestHandlerInterface
     {
         $openAiGpt4oMini = $this->openaiChatAdapterFactory->createChatAdapter(['model' => 'gpt4o-mini']);
-        $llama3 = new OllamaChatAdapter(Ollama::client(), 'llama3.2');
+        $llama3 = new OllamaChatAdapter(Ollama::factory()->withHttpClient($this->httpClient)->withBaseUrl($this->ollamaEndpoint)->make(), 'llama3.2');
 
         $decisionTree = new DecisionTree([
             new DecisionRule($llama3, [PrivacyCriteria::HIGH, CapabilityCriteria::BASIC]),

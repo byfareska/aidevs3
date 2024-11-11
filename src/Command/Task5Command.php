@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[AsCommand(name: 'task:5', description: 'Task 5: 2024-11-08')]
-class Task5Command extends Command
+final class Task5Command extends TaskSolution
 {
     private const string SYSTEM_PROMPT = <<<PROMPT
 You are assistant that helps me to secure sensitive personal data.
