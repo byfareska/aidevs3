@@ -30,11 +30,13 @@ final readonly class AIChatRequestHandlerFactory
     public function create(): AIChatRequestHandlerInterface
     {
         $openAiGpt4oMini = $this->openaiChatAdapterFactory->createChatAdapter(['model' => 'gpt4o-mini']);
+        $openAiGpt4o = $this->openaiChatAdapterFactory->createChatAdapter(['model' => 'gpt4o']);
         $llama3 = new OllamaChatAdapter(Ollama::factory()->withHttpClient($this->httpClient)->withBaseUrl($this->ollamaEndpoint)->make(), 'llama3.2');
 
         $decisionTree = new DecisionTree([
             new DecisionRule($llama3, [PrivacyCriteria::HIGH, CapabilityCriteria::BASIC]),
-            new DecisionRule($openAiGpt4oMini, [PrivacyCriteria::MEDIUM, CapabilityCriteria::INTERMEDIATE])
+            new DecisionRule($openAiGpt4oMini, [PrivacyCriteria::MEDIUM, CapabilityCriteria::INTERMEDIATE]),
+            new DecisionRule($openAiGpt4o, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED]),
         ]);
 
         return new AIChatRequestHandler($decisionTree);

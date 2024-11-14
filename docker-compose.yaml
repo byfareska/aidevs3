@@ -11,3 +11,7 @@ services:
       - ./var/ollama:/root/.ollama
     ports:
       - "11434:11434"
+  omniparse:
+    image: savatar101/omniparse:0.1
+    ports:
+      - "8000:8000"

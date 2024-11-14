@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68da00ef4e5e690c87e708eef48cf106",
+    "content-hash": "ca4618eab574c90b334006618d5690fb",
     "packages": [
+        {
+            "name": "evenement/evenement",
+            "version": "v3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/igorw/evenement.git",
+                "reference": "0a16b0d71ab13284339abb99d9d2bd813640efbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/igorw/evenement/zipball/0a16b0d71ab13284339abb99d9d2bd813640efbc",
+                "reference": "0a16b0d71ab13284339abb99d9d2bd813640efbc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9 || ^6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Evenement\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                }
+            ],
+            "description": "Événement is a very simple event dispatching library for PHP",
+            "keywords": [
+                "event-dispatcher",
+                "event-emitter"
+            ],
+            "support": {
+                "issues": "https://github.com/igorw/evenement/issues",
+                "source": "https://github.com/igorw/evenement/tree/v3.0.2"
+            },
+            "time": "2023-08-08T05:53:35+00:00"
+        },
         {
             "name": "masterminds/html5",
             "version": "2.9.0",
@@ -484,6 +531,139 @@
             "time": "2024-08-25T18:33:32+00:00"
         },
         {
+            "name": "modelflow-ai/prompt-template",
+            "version": "0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/modelflow-ai/prompt-template.git",
+                "reference": "b544c95bf5e40426f27f9ce0545d93232e28e90c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/modelflow-ai/prompt-template/zipball/b544c95bf5e40426f27f9ce0545d93232e28e90c",
+                "reference": "b544c95bf5e40426f27f9ce0545d93232e28e90c",
+                "shasum": ""
+            },
+            "require": {
+                "modelflow-ai/chat": "^0.2",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "asapo/remove-vendor-plugin": "^0.1",
+                "php-cs-fixer/shim": "^3.15",
+                "phpstan/extension-installer": "^1.2",
+                "phpstan/phpstan": "^1.10, <1.10.55",
+                "phpstan/phpstan-phpunit": "^1.3@stable",
+                "phpunit/phpunit": "^10.3",
+                "rector/rector": "^0.18.1"
+            },
+            "type": "library",
+            "extra": {
+                "remove-folders": [
+                    "modelflow-ai/*/vendor"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "ModelflowAi\\PromptTemplate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes Wachter",
+                    "email": "johannes@sulu.io"
+                }
+            ],
+            "description": "Templating library for ai prompts.",
+            "keywords": [
+                "ai",
+                "prompts",
+                "prompts template",
+                "template"
+            ],
+            "support": {
+                "source": "https://github.com/modelflow-ai/prompt-template/tree/0.2.1"
+            },
+            "time": "2024-11-10T19:58:34+00:00"
+        },
+        {
+            "name": "nelexa/zip",
+            "version": "4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ne-Lexa/php-zip.git",
+                "reference": "88a1b6549be813278ff2dd3b6b2ac188827634a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ne-Lexa/php-zip/zipball/88a1b6549be813278ff2dd3b6b2ac188827634a7",
+                "reference": "88a1b6549be813278ff2dd3b6b2ac188827634a7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zlib": "*",
+                "php": "^7.4 || ^8.0",
+                "psr/http-message": "*",
+                "symfony/finder": "*"
+            },
+            "require-dev": {
+                "ext-bz2": "*",
+                "ext-dom": "*",
+                "ext-fileinfo": "*",
+                "ext-iconv": "*",
+                "ext-openssl": "*",
+                "ext-xml": "*",
+                "friendsofphp/php-cs-fixer": "^3.4.0",
+                "guzzlehttp/psr7": "^1.6",
+                "phpunit/phpunit": "^9",
+                "symfony/http-foundation": "*",
+                "symfony/var-dumper": "*",
+                "vimeo/psalm": "^4.6"
+            },
+            "suggest": {
+                "ext-bz2": "Needed to support BZIP2 compression",
+                "ext-fileinfo": "Needed to get mime-type file",
+                "ext-iconv": "Needed to support convert zip entry name to requested character encoding",
+                "ext-openssl": "Needed to support encrypt zip entries or use ext-mcrypt"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpZip\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ne-Lexa",
+                    "email": "alexey@nelexa.ru",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PhpZip is a php-library for extended work with ZIP-archives. Open, create, update, delete, extract and get info tool. Supports appending to existing ZIP files, WinZip AES encryption, Traditional PKWARE Encryption, BZIP2 compression, external file attributes and ZIP64 extensions. Alternative ZipArchive. It does not require php-zip extension.",
+            "homepage": "https://github.com/Ne-Lexa/php-zip",
+            "keywords": [
+                "archive",
+                "extract",
+                "unzip",
+                "winzip",
+                "zip",
+                "ziparchive"
+            ],
+            "support": {
+                "issues": "https://github.com/Ne-Lexa/php-zip/issues",
+                "source": "https://github.com/Ne-Lexa/php-zip/tree/4.0.2"
+            },
+            "time": "2022-06-17T11:17:46+00:00"
+        },
+        {
             "name": "nyholm/psr7",
             "version": "1.8.2",
             "source": {
@@ -652,6 +832,95 @@
                 }
             ],
             "time": "2024-04-15T19:11:23+00:00"
+        },
+        {
+            "name": "php-ffmpeg/php-ffmpeg",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-FFMpeg/PHP-FFMpeg.git",
+                "reference": "5e7b15710a8607e8a3a2d9fbe2c150a99b924fa5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-FFMpeg/PHP-FFMpeg/zipball/5e7b15710a8607e8a3a2d9fbe2c150a99b924fa5",
+                "reference": "5e7b15710a8607e8a3a2d9fbe2c150a99b924fa5",
+                "shasum": ""
+            },
+            "require": {
+                "evenement/evenement": "^3.0",
+                "php": "^8.0 || ^8.1 || ^8.2 || ^8.3 || ^8.4",
+                "psr/log": "^1.0 || ^2.0 || ^3.0",
+                "spatie/temporary-directory": "^2.0",
+                "symfony/cache": "^5.4 || ^6.0 || ^7.0",
+                "symfony/process": "^5.4 || ^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "phpunit/phpunit": "^9.5.10 || ^10.0"
+            },
+            "suggest": {
+                "php-ffmpeg/extras": "A compilation of common audio & video drivers for PHP-FFMpeg"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FFMpeg\\": "src/FFMpeg",
+                    "Alchemy\\BinaryDriver\\": "src/Alchemy/BinaryDriver"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Romain Neutron",
+                    "email": "imprec@gmail.com",
+                    "homepage": "http://www.lickmychip.com/"
+                },
+                {
+                    "name": "Phraseanet Team",
+                    "email": "info@alchemy.fr",
+                    "homepage": "http://www.phraseanet.com/"
+                },
+                {
+                    "name": "Patrik Karisch",
+                    "email": "patrik@karisch.guru",
+                    "homepage": "http://www.karisch.guru"
+                },
+                {
+                    "name": "Romain Biard",
+                    "email": "romain.biard@gmail.com",
+                    "homepage": "https://www.strime.io/"
+                },
+                {
+                    "name": "Jens Hausdorf",
+                    "email": "hello@jens-hausdorf.de",
+                    "homepage": "https://jens-hausdorf.de"
+                },
+                {
+                    "name": "Pascal Baljet",
+                    "email": "pascal@protone.media",
+                    "homepage": "https://protone.media"
+                }
+            ],
+            "description": "FFMpeg PHP, an Object Oriented library to communicate with AVconv / ffmpeg",
+            "keywords": [
+                "audio",
+                "audio processing",
+                "avconv",
+                "avprobe",
+                "ffmpeg",
+                "ffprobe",
+                "video",
+                "video processing"
+            ],
+            "support": {
+                "issues": "https://github.com/PHP-FFMpeg/PHP-FFMpeg/issues",
+                "source": "https://github.com/PHP-FFMpeg/PHP-FFMpeg/tree/v1.3.0"
+            },
+            "time": "2024-11-12T15:39:52+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -1215,6 +1484,67 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
             "time": "2024-09-11T13:17:53+00:00"
+        },
+        {
+            "name": "spatie/temporary-directory",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/temporary-directory.git",
+                "reference": "76949fa18f8e1a7f663fd2eaa1d00e0bcea0752a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/76949fa18f8e1a7f663fd2eaa1d00e0bcea0752a",
+                "reference": "76949fa18f8e1a7f663fd2eaa1d00e0bcea0752a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\TemporaryDirectory\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily create, use and destroy temporary directories",
+            "homepage": "https://github.com/spatie/temporary-directory",
+            "keywords": [
+                "php",
+                "spatie",
+                "temporary-directory"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/temporary-directory/issues",
+                "source": "https://github.com/spatie/temporary-directory/tree/2.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-12-25T11:46:58+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -2918,6 +3248,90 @@
             "time": "2024-10-27T13:54:21+00:00"
         },
         {
+            "name": "symfony/mime",
+            "version": "v7.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/mime.git",
+                "reference": "caa1e521edb2650b8470918dfe51708c237f0598"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/caa1e521edb2650b8470918dfe51708c237f0598",
+                "reference": "caa1e521edb2650b8470918dfe51708c237f0598",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "symfony/polyfill-intl-idn": "^1.10",
+                "symfony/polyfill-mbstring": "^1.0"
+            },
+            "conflict": {
+                "egulias/email-validator": "~3.0.0",
+                "phpdocumentor/reflection-docblock": "<3.2.2",
+                "phpdocumentor/type-resolver": "<1.4.0",
+                "symfony/mailer": "<6.4",
+                "symfony/serializer": "<6.4.3|>7.0,<7.0.3"
+            },
+            "require-dev": {
+                "egulias/email-validator": "^2.1.10|^3.1|^4",
+                "league/html-to-markdown": "^5.0",
+                "phpdocumentor/reflection-docblock": "^3.0|^4.0|^5.0",
+                "symfony/dependency-injection": "^6.4|^7.0",
+                "symfony/process": "^6.4|^7.0",
+                "symfony/property-access": "^6.4|^7.0",
+                "symfony/property-info": "^6.4|^7.0",
+                "symfony/serializer": "^6.4.3|^7.0.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Mime\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Allows manipulating MIME messages",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "mime",
+                "mime-type"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/mime/tree/v7.1.6"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-10-25T15:11:02+00:00"
+        },
+        {
             "name": "symfony/panther",
             "version": "v2.1.1",
             "source": {
@@ -3067,6 +3481,89 @@
             ],
             "support": {
                 "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.31.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-09-09T11:45:10+00:00"
+        },
+        {
+            "name": "symfony/polyfill-intl-idn",
+            "version": "v1.31.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-intl-idn.git",
+                "reference": "c36586dcf89a12315939e00ec9b4474adcb1d773"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/c36586dcf89a12315939e00ec9b4474adcb1d773",
+                "reference": "c36586dcf89a12315939e00ec9b4474adcb1d773",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "symfony/polyfill-intl-normalizer": "^1.10"
+            },
+            "suggest": {
+                "ext-intl": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Idn\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laurent Bassin",
+                    "email": "laurent@bassin.info"
+                },
+                {
+                    "name": "Trevor Rowbotham",
+                    "email": "trevor.rowbotham@pm.me"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for intl's idn_to_ascii and idn_to_utf8 functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "idn",
+                "intl",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.31.0"
             },
             "funding": [
                 {
@@ -4547,7 +5044,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -4555,6 +5052,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

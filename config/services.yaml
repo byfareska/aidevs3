@@ -28,3 +28,5 @@ services:
         factory: ['@App\Factory\AIChatRequestHandlerFactory', 'create']
     ModelflowAi\OpenaiAdapter\Chat\OpenaiChatAdapterFactory:
     Symfony\Component\DependencyInjection\ExpressionLanguage:
+    FFMpeg\FFMpeg:
+        factory: ['FFMpeg\FFMpeg', 'create']

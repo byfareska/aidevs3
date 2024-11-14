@@ -1,6 +1,7 @@
 FROM php:8.4-rc-zts-alpine
 
-RUN apk --update --no-cache add $PHPIZE_DEPS zip shadow bzip2-dev curl-dev libpng-dev libzip-dev gmp-dev icu-dev oniguruma-dev libzip-dev \
+RUN apk --update --no-cache add $PHPIZE_DEPS zip shadow bzip2-dev curl-dev libpng-dev libzip-dev gmp-dev icu-dev \
+    oniguruma-dev libzip-dev ffmpeg \
     && usermod -u 1000 www-data && groupmod -g 1000 www-data \
     && pecl install parallel && docker-php-ext-enable parallel \
     && docker-php-ext-install bcmath \
