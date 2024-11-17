@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\AiDevs\ResultSender;
+use App\Service\AiResponseParser;
 use App\Service\Omniparse;
 use FFMpeg\FFMpeg;
 use FFMpeg\Format\Audio\Mp3;
@@ -40,6 +41,7 @@ PROMPT;
         private readonly Omniparse $omniparse,
         private readonly AIChatRequestHandlerInterface $chatRequestHandler,
         private readonly ResultSender $resultSender,
+        private readonly AiResponseParser $aiResponseParser,
 
         #[Autowire(env: 'TASK6_VERIFY_ENDPOINT')]
         private readonly string $endpointVerify,
@@ -113,10 +115,9 @@ PROMPT;
 
         $output->writeln($response);
 
-        preg_match('/<ulica>(.+)<\/ulica>/U', $response, $regexOutput);
-        $street = $regexOutput[1] ?? null;
+        $street = $this->aiResponseParser->fetchOneByTag($response, 'ulica');
 
-        if($street === null) {
+        if ($street === null) {
             $output->writeln('Nie udało się odnaleźć odpowiedzi.');
             return Command::FAILURE;
         }

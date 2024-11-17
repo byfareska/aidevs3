@@ -30,3 +30,8 @@ services:
     Symfony\Component\DependencyInjection\ExpressionLanguage:
     FFMpeg\FFMpeg:
         factory: ['FFMpeg\FFMpeg', 'create']
+    Intervention\Image\Drivers\Gd\Driver:
+    Intervention\Image\Interfaces\ImageManagerInterface:
+        class: Intervention\Image\ImageManager
+        arguments:
+            $driver: '@Intervention\Image\Drivers\Gd\Driver'
