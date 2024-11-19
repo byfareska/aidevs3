@@ -24,7 +24,7 @@ final class Task3Command extends TaskSolution
         private readonly ExpressionLanguage $expressionLanguage,
         private readonly ResultSender $resultSender,
         private readonly AIChatRequestHandlerInterface $chatRequestHandler,
-        #[Autowire(env: 'TASK3_VERIFY_ENDPOINT')]
+        #[Autowire(env: 'CENTRALA_VERIFY_ENDPOINT')]
         private readonly string $endpointVerify,
         #[Autowire(env: 'TASK3_ENDPOINT')]
         private readonly string $endpoint,

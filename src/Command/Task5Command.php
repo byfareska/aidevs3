@@ -54,7 +54,7 @@ PROMPT;
         private readonly AIChatRequestHandlerInterface $chatRequestHandler,
         private readonly ResultSender $resultSender,
         private readonly HttpClientInterface $httpClient,
-        #[Autowire(env: 'TASK5_VERIFY_ENDPOINT')]
+        #[Autowire(env: 'CENTRALA_VERIFY_ENDPOINT')]
         private readonly string $endpointVerify,
         #[Autowire(env: 'TASK5_ENDPOINT')]
         private readonly string $endpoint,

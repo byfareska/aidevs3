@@ -43,7 +43,7 @@ PROMPT;
         private readonly ResultSender $resultSender,
         private readonly AiResponseParser $aiResponseParser,
 
-        #[Autowire(env: 'TASK6_VERIFY_ENDPOINT')]
+        #[Autowire(env: 'CENTRALA_VERIFY_ENDPOINT')]
         private readonly string $endpointVerify,
 
         #[Autowire(env: 'TASK6_SOURCE_FILE_URL')]
