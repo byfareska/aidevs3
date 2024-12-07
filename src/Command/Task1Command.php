@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Modelflow\FeatureCriteria;
 use Facebook\WebDriver\Remote\RemoteWebElement;
 use ModelflowAi\Chat\AIChatRequestHandlerInterface;
 use ModelflowAi\Chat\Request\Message\AIChatMessage;
@@ -50,6 +51,7 @@ final class Task1Command extends TaskSolution
             )
             ->addCriteria(PrivacyCriteria::LOW)
             ->addCriteria(CapabilityCriteria::BASIC)
+            ->addCriteria(FeatureCriteria::TEXT_GENERATION)
             ->build()
             ->execute()
             ->getMessage()

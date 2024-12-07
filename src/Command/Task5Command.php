@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\AiDevs\ResultSender;
+use App\Modelflow\FeatureCriteria;
 use ModelflowAi\Chat\AIChatRequestHandlerInterface;
 use ModelflowAi\Chat\Request\Message\AIChatMessage;
 use ModelflowAi\Chat\Request\Message\AIChatMessageRoleEnum;
@@ -77,6 +78,7 @@ PROMPT;
             )
             ->addCriteria(PrivacyCriteria::HIGH)
             ->addCriteria(CapabilityCriteria::BASIC)
+            ->addCriteria(FeatureCriteria::TEXT_GENERATION)
             ->addOptions([
                 'temperature' => 0.2
             ])

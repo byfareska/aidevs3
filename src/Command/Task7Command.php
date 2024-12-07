@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Modelflow\FeatureCriteria;
 use App\Modelflow\OpenAiImageMessagePart;
 use App\Service\AiResponseParser;
 use Intervention\Image\Interfaces\ImageInterface;
@@ -116,6 +117,7 @@ PROMPT;
         $response = $this->requestHandler->createRequest(...$messages)
             ->addCriteria(PrivacyCriteria::MEDIUM)
             ->addCriteria(CapabilityCriteria::ADVANCED)
+            ->addCriteria(FeatureCriteria::TEXT_GENERATION)
             ->addOptions([
                 'temperature' => 0.4
             ])

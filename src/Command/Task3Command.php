@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\AiDevs\ResultSender;
+use App\Modelflow\FeatureCriteria;
 use ModelflowAi\Chat\AIChatRequestHandlerInterface;
 use ModelflowAi\Chat\Request\Message\AIChatMessage;
 use ModelflowAi\Chat\Request\Message\AIChatMessageRoleEnum;
@@ -57,6 +58,7 @@ final class Task3Command extends TaskSolution
             )
             ->addCriteria(PrivacyCriteria::LOW)
             ->addCriteria(CapabilityCriteria::BASIC)
+            ->addCriteria(FeatureCriteria::TEXT_GENERATION)
             ->build()
             ->execute()
             ->getMessage()

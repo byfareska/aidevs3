@@ -24,13 +24,14 @@ final readonly class Omniparse
     {
     }
 
-    public function toMd(SplFileInfo $file): string
+    public function toMd(SplFileInfo $file, ?string $mime = null): string
     {
-        $mime = $this->mimeTypes->getMimeTypes($file->getExtension())[0];
+        $mime ??= $this->mimeTypes->getMimeTypes($file->getExtension())[0];
+        $type = explode('/', $mime, 2)[0] ?? null;
 
         $endpoint = $this->uriFactory->createUri($this->omniparseUrl)
-            ->withPath(match (explode('/', $mime, 2)[0] ?? null) {
-                'image' => '/parse_image/process_image',
+            ->withPath(match ($type) {
+                'image' => '/parse_image/image',
                 'audio' => '/parse_media/audio',
                 'video' => '/parse_media/video',
                 default => '/parse_document',

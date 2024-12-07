@@ -2,6 +2,7 @@
 
 namespace App\Factory;
 
+use App\Modelflow\FeatureCriteria;
 use ModelflowAi\Chat\AIChatRequestHandler;
 use ModelflowAi\Chat\AIChatRequestHandlerInterface;
 use ModelflowAi\DecisionTree\Criteria\CapabilityCriteria;
@@ -31,12 +32,14 @@ final readonly class AIChatRequestHandlerFactory
     {
         $openAiGpt4oMini = $this->openaiChatAdapterFactory->createChatAdapter(['model' => 'gpt4o-mini']);
         $openAiGpt4o = $this->openaiChatAdapterFactory->createChatAdapter(['model' => 'gpt4o']);
-        $llama3 = new OllamaChatAdapter(Ollama::factory()->withHttpClient($this->httpClient)->withBaseUrl($this->ollamaEndpoint)->make(), 'llama3.2');
+        $gemma = new OllamaChatAdapter(Ollama::factory()->withHttpClient($this->httpClient)->withBaseUrl($this->ollamaEndpoint)->make(), 'gemma:2b');
+        $llava = new OllamaChatAdapter(Ollama::factory()->withHttpClient($this->httpClient)->withBaseUrl($this->ollamaEndpoint)->make(), 'llava');
 
         $decisionTree = new DecisionTree([
-            new DecisionRule($llama3, [PrivacyCriteria::HIGH, CapabilityCriteria::BASIC]),
-            new DecisionRule($openAiGpt4oMini, [PrivacyCriteria::MEDIUM, CapabilityCriteria::INTERMEDIATE]),
-            new DecisionRule($openAiGpt4o, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED]),
+            new DecisionRule($gemma, [PrivacyCriteria::HIGH, CapabilityCriteria::BASIC, FeatureCriteria::TEXT_GENERATION]),
+            new DecisionRule($llava, [PrivacyCriteria::HIGH, CapabilityCriteria::BASIC, FeatureCriteria::IMAGE_VISION]),
+            new DecisionRule($openAiGpt4oMini, [PrivacyCriteria::MEDIUM, CapabilityCriteria::INTERMEDIATE, FeatureCriteria::TEXT_GENERATION]),
+            new DecisionRule($openAiGpt4o, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::TEXT_GENERATION, FeatureCriteria::IMAGE_VISION]),
         ]);
 
         return new AIChatRequestHandler($decisionTree);

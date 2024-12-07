@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\AiDevs\ResultSender;
+use App\Modelflow\FeatureCriteria;
 use App\Service\AiResponseParser;
 use App\Service\Omniparse;
 use FFMpeg\FFMpeg;
@@ -96,6 +97,7 @@ PROMPT;
             ->createRequest(...$messages)
             ->addCriteria(PrivacyCriteria::MEDIUM)
             ->addCriteria(CapabilityCriteria::ADVANCED)
+            ->addCriteria(FeatureCriteria::TEXT_GENERATION)
             ->addOptions([
                 'temperature' => 0.4
             ])
