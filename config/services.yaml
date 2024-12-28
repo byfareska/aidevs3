@@ -35,3 +35,16 @@ services:
         class: Intervention\Image\ImageManager
         arguments:
             $driver: '@Intervention\Image\Drivers\Gd\Driver'
+    Symfony\Component\Panther\Client:
+        factory: ['Symfony\Component\Panther\Client', 'createChromeClient']
+    League\HTMLToMarkdown\HtmlConverter:
+        arguments:
+            $options:
+                header_style: atx
+    ModelflowAi\Embeddings\Generator\EmbeddingGeneratorInterface:
+        factory: ['@App\Factory\EmbeddingGeneratorFactory', 'create']
+    ModelflowAi\Embeddings\Adapter\EmbeddingAdapterInterface:
+        factory: ['@App\Factory\EmbeddingAdapterFactory', 'create']
+    Elastic\Elasticsearch\ClientInterface:
+        factory: ['@App\Factory\ElasticSearchClientFactory', 'create']
+    League\CommonMark\CommonMarkConverter:

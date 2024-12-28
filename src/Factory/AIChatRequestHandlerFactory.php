@@ -39,7 +39,8 @@ final readonly class AIChatRequestHandlerFactory
             new DecisionRule($gemma, [PrivacyCriteria::HIGH, CapabilityCriteria::BASIC, FeatureCriteria::TEXT_GENERATION]),
             new DecisionRule($llava, [PrivacyCriteria::HIGH, CapabilityCriteria::BASIC, FeatureCriteria::IMAGE_VISION]),
             new DecisionRule($openAiGpt4oMini, [PrivacyCriteria::MEDIUM, CapabilityCriteria::INTERMEDIATE, FeatureCriteria::TEXT_GENERATION]),
-            new DecisionRule($openAiGpt4o, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::TEXT_GENERATION, FeatureCriteria::IMAGE_VISION]),
+            new DecisionRule($openAiGpt4o, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::TEXT_GENERATION]),
+            new DecisionRule($openAiGpt4o, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::IMAGE_VISION]),
         ]);
 
         return new AIChatRequestHandler($decisionTree);

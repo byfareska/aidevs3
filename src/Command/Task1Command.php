@@ -22,15 +22,20 @@ final class Task1Command extends TaskSolution
     private const string QUESTION_SELECTOR = '#human-question';
 
     public function __construct(
-        private AIChatRequestHandlerInterface $chatRequestHandler,
         #[Autowire(param: 'kernel.project_dir')]
-        private string $projectDir,
+        private readonly string $projectDir,
+
         #[Autowire(env: 'TASK1_ENDPOINT')]
-        private string $endpoint,
+        private readonly string $endpoint,
+
         #[Autowire(env: 'TASK1_USERNAME')]
-        private string $username,
+        private readonly string $username,
+
         #[Autowire(env: 'TASK1_PASSWORD')]
-        private string $password,
+        private readonly string $password,
+
+        private readonly AIChatRequestHandlerInterface $chatRequestHandler,
+        private readonly Client $browser,
         ?string $name = null,
     )
     {
@@ -39,11 +44,8 @@ final class Task1Command extends TaskSolution
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $client = Client::createChromeClient();
-
-        $webpage = $client->request('GET', $this->endpoint);
-
-        $question = $client->waitFor(self::QUESTION_SELECTOR)->filter(self::QUESTION_SELECTOR)->text();
+        $webpage = $this->browser->request('GET', $this->endpoint);
+        $question = $this->browser->waitFor(self::QUESTION_SELECTOR)->filter(self::QUESTION_SELECTOR)->text();
         $answer = $this->chatRequestHandler
             ->createRequest(
                 new AIChatMessage(AIChatMessageRoleEnum::SYSTEM, "Proszę o odpowiedź na pytanie, udziel jak najkrótszej odpowiedzi, najlepiej w jednym słowie"),
@@ -61,12 +63,12 @@ final class Task1Command extends TaskSolution
         $form->get('username')->setValue($this->username);
         $form->get('password')->setValue($this->password);
         $form->get('answer')->setValue($answer);
-        $afterSubmit = $client->submit($form);
+        $afterSubmit = $this->browser->submit($form);
 
         $path = sprintf('%s/var/screenshots/task1-%s.png', $this->projectDir, time());
-        $client->takeScreenshot($path);
+        $this->browser->takeScreenshot($path);
         $output->writeln("Screenshot saved to: {$path}");
-        $output->writeln("Current URL is {$client->getCurrentURL()}");
+        $output->writeln("Current URL is {$this->browser->getCurrentURL()}");
         $output->writeln("Found links:");
         foreach ($afterSubmit->filter('a')->getIterator() as $anchor) {
             /** @var $anchor RemoteWebElement */

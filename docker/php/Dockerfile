@@ -1,7 +1,7 @@
-FROM php:8.4-rc-zts-alpine
+FROM php:8.4-zts-alpine
 
 RUN apk --update --no-cache add $PHPIZE_DEPS zip shadow bzip2-dev curl-dev libpng-dev libzip-dev gmp-dev icu-dev \
-    oniguruma-dev libzip-dev ffmpeg jpeg-dev libpng-dev \
+    oniguruma-dev libzip-dev ffmpeg jpeg-dev libpng-dev unzip chromium chromium-chromedriver \
     && usermod -u 1000 www-data && groupmod -g 1000 www-data \
     && pecl install parallel && docker-php-ext-enable parallel \
     && docker-php-ext-install bcmath \
@@ -13,6 +13,8 @@ RUN apk --update --no-cache add $PHPIZE_DEPS zip shadow bzip2-dev curl-dev libpn
     && docker-php-ext-install intl \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install zip
+
+ENV PANTHER_CHROME_DRIVER_BINARY /usr/lib/chromium/chromedriver
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
