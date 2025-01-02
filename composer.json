@@ -32,7 +32,8 @@
     "symfony/runtime": "7.1.*",
     "symfony/stopwatch": "7.1.*",
     "symfony/uid": "7.1.*",
-    "symfony/yaml": "7.1.*"
+    "symfony/yaml": "7.1.*",
+    "ext-intl": "*"
   },
   "config": {
     "allow-plugins": {
