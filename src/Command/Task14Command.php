@@ -104,7 +104,7 @@ PROMPT;
     private function doRequest(string $query, bool $isPlacesRequest): stdClass
     {
         $endpoint = $isPlacesRequest ? $this->placesEndpoint : $this->peopleEndpoint;
-        $response = $this->httpClient->request('POST', $endpoint ."?q={$query}", [
+        $response = $this->httpClient->request('POST', $endpoint, [
             'json' => [
                 'query' => $query,
                 'apikey' => $this->resultSender->getApiKey(),
