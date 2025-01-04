@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\AiDevs\DatabaseClient;
 use App\AiDevs\ResultSender;
 use App\Modelflow\FeatureCriteria;
 use App\Service\AiResponseParser;
@@ -17,7 +18,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[AsCommand(name: 'task:13', description: 'Task 13: 2024-11-20')]
 final class Task13Command extends TaskSolution
@@ -35,14 +35,11 @@ PROMPT;
     private const string QUESTION = 'które aktywne datacenter (DC_ID) są zarządzane przez pracowników, którzy są na urlopie (is_active=0)? (wypisz tylko DC_ID)';
 
     public function __construct(
-        #[Autowire(env: 'TASK13_ENDPOINT')]
-        private readonly string $databaseEndpoint,
-
         #[Autowire(env: 'CENTRALA_VERIFY_ENDPOINT')]
         private readonly string $endpointVerify,
 
         private readonly ResultSender $resultSender,
-        private readonly HttpClientInterface $httpClient,
+        private readonly DatabaseClient $db,
         private readonly AIChatRequestHandlerInterface $requestHandler,
         private readonly AiResponseParser $responseParser,
         ?string $name = null
@@ -54,7 +51,7 @@ PROMPT;
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln(self::QUESTION);
-        $tableNameToStructure = $this->describeTables();
+        $tableNameToStructure = $this->db->describeTables();
 
         $response = $this->requestHandler
             ->createRequest(...ChatPromptTemplate::create(
@@ -76,7 +73,7 @@ PROMPT;
         $response = $this->responseParser->fetchOneByCodeBlock($response, 'sql') ?? $response;
         $output->writeln($response);
 
-        $queryResult = array_map(static fn(stdClass $r) => current((array)$r), $this->query($response)->reply ?? []);
+        $queryResult = array_map(static fn(stdClass $r) => current((array)$r), $this->db->query($response)->reply ?? []);
         $output->writeln('Result: ' . json_encode($queryResult, JSON_THROW_ON_ERROR));
         $result = $this->resultSender->sendAndDecodeJsonBody($this->endpointVerify, 'database', $queryResult);
 
@@ -85,29 +82,4 @@ PROMPT;
         return Command::SUCCESS;
     }
 
-    private function query(string $query): stdClass
-    {
-        $content = $this->httpClient->request('POST', $this->databaseEndpoint, [
-            'json' => [
-                'query' => $query,
-                'task' => 'database',
-                'apikey' => $this->resultSender->getApiKey(),
-            ],
-        ])->getContent();
-
-        return json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-    }
-
-    private function describeTables(): array
-    {
-        $availableTableNames = array_map(static fn(stdClass $row) => $row->Tables_in_banan, $this->query('show tables')->reply);
-
-        $result = [];
-
-        foreach ($availableTableNames as $tableName) {
-            $result[$tableName] = $this->query("show create table {$tableName}")->reply[0]->{'Create Table'};
-        }
-
-        return $result;
-    }
 }

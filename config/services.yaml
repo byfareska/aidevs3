@@ -48,3 +48,5 @@ services:
     Elastic\Elasticsearch\ClientInterface:
         factory: ['@App\Factory\ElasticSearchClientFactory', 'create']
     League\CommonMark\CommonMarkConverter:
+    Laudis\Neo4j\Contracts\ClientInterface:
+        factory: ['@App\Factory\Neo4jClientFactory', 'create']
