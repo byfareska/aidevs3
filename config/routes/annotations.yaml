@@ -1,0 +1,3 @@
+app.accounting:
+  resource: ../../src/Controller
+  type: attribute

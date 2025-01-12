@@ -6,9 +6,11 @@
   "require": {
     "php": ">=8.4",
     "ext-ctype": "*",
+    "ext-dom": "*",
     "ext-fileinfo": "*",
     "ext-iconv": "*",
     "ext-intl": "*",
+    "ext-libxml": "*",
     "intervention/image": "^3.9",
     "laudis/neo4j-php-client": "^3.2",
     "league/commonmark": "^2.6",
@@ -31,13 +33,12 @@
     "symfony/framework-bundle": "7.1.*",
     "symfony/http-client": "7.1.*",
     "symfony/mime": "7.1.*",
+    "symfony/monolog-bundle": "^3.10",
     "symfony/panther": "^2.1",
     "symfony/runtime": "7.1.*",
     "symfony/stopwatch": "7.1.*",
     "symfony/uid": "7.1.*",
-    "symfony/yaml": "7.1.*",
-    "ext-dom": "*",
-    "ext-libxml": "*"
+    "symfony/yaml": "7.1.*"
   },
   "config": {
     "allow-plugins": {
