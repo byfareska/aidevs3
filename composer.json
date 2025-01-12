@@ -16,6 +16,7 @@
     "modelflow-ai/chat": "^0.2.0",
     "modelflow-ai/elasticsearch-embeddings-store": "^0.2.2",
     "modelflow-ai/embeddings": "^0.2.2",
+    "modelflow-ai/google-gemini-adapter": "@dev",
     "modelflow-ai/ollama-adapter": "^0.2.1",
     "modelflow-ai/openai-adapter": "^0.2.0",
     "modelflow-ai/prompt-template": "^0.2.1",

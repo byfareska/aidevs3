@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ffc3be46e6ffd601caac2bff56d6709",
+    "content-hash": "92df42caefbfd8b34933ee2980e25434",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -309,6 +309,69 @@
                 "source": "https://github.com/igorw/evenement/tree/v3.0.2"
             },
             "time": "2023-08-08T05:53:35+00:00"
+        },
+        {
+            "name": "google-gemini-php/client",
+            "version": "1.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/google-gemini-php/client.git",
+                "reference": "6dca9a5e6a6de39b230fe4593a8d041efd02e34e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/google-gemini-php/client/zipball/6dca9a5e6a6de39b230fe4593a8d041efd02e34e",
+                "reference": "6dca9a5e6a6de39b230fe4593a8d041efd02e34e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1.0",
+                "php-http/discovery": "^1.19.2"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^7.8.1",
+                "guzzlehttp/psr7": "^2.6.2",
+                "laravel/pint": "^1.18.1",
+                "mockery/mockery": "^1.6.7",
+                "pestphp/pest": "^2.30",
+                "phpstan/phpstan": "^1.10"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Gemini.php"
+                ],
+                "psr-4": {
+                    "Gemini\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fatih AYDIN",
+                    "email": "aydinfatih52@gmail.com"
+                }
+            ],
+            "description": "Gemini API is a supercharged PHP API client that allows you to interact with the Gemini API",
+            "keywords": [
+                "Gemini",
+                "client",
+                "gemini-pro",
+                "language",
+                "natural",
+                "nlp",
+                "php",
+                "processing",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/google-gemini-php/client/issues",
+                "source": "https://github.com/google-gemini-php/client/tree/1.0.15"
+            },
+            "time": "2024-12-29T12:53:49+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1592,6 +1655,77 @@
                 "source": "https://github.com/modelflow-ai/embeddings/tree/0.2.2"
             },
             "time": "2024-12-02T21:57:36+00:00"
+        },
+        {
+            "name": "modelflow-ai/google-gemini-adapter",
+            "version": "0.2.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/modelflow-ai/google-gemini-adapter.git",
+                "reference": "3903a0737efbe14c62c85b7cf7d763e4b1320ed6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/modelflow-ai/google-gemini-adapter/zipball/3903a0737efbe14c62c85b7cf7d763e4b1320ed6",
+                "reference": "3903a0737efbe14c62c85b7cf7d763e4b1320ed6",
+                "shasum": ""
+            },
+            "require": {
+                "google-gemini-php/client": "^1.0.14",
+                "nyholm/psr7": "^1.8",
+                "php": "^8.2",
+                "php-http/discovery": "^1.0",
+                "psr/http-client": "^1.0",
+                "psr/http-client-implementation": "^1.0"
+            },
+            "require-dev": {
+                "asapo/remove-vendor-plugin": "^0.1",
+                "jangregor/phpstan-prophecy": "^1.0",
+                "modelflow-ai/chat": "^0.2",
+                "modelflow-ai/prompt-template": "^0.2",
+                "php-cs-fixer/shim": "^3.15",
+                "phpspec/prophecy-phpunit": "^2.1@stable",
+                "phpstan/extension-installer": "^1.2",
+                "phpstan/phpstan": "^1.10, <1.10.55",
+                "phpstan/phpstan-phpunit": "^1.3@stable",
+                "phpunit/phpunit": "^10.3",
+                "rector/rector": "^0.18.1",
+                "symfony/dotenv": "7.1.x-dev",
+                "symfony/http-client": "^7.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "remove-folders": [
+                    "modelflow-ai/*/vendor"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "ModelflowAi\\GoogleGeminiAdapter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes Wachter",
+                    "email": "johannes@sulu.io"
+                }
+            ],
+            "description": "Integrates the google gemini into modelflow-ai.",
+            "keywords": [
+                "ai",
+                "google-gemini",
+                "modelflow-ai"
+            ],
+            "support": {
+                "issues": "https://github.com/modelflow-ai/google-gemini-adapter/issues",
+                "source": "https://github.com/modelflow-ai/google-gemini-adapter/tree/0.2"
+            },
+            "time": "2025-01-07T11:57:08+00:00"
         },
         {
             "name": "modelflow-ai/ollama",
@@ -7396,7 +7530,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "modelflow-ai/google-gemini-adapter": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
