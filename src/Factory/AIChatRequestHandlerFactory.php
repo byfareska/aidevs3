@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Modelflow\FeatureCriteria;
+use App\Modelflow\FineTuningCriteria;
 use App\Modelflow\ProviderCriteria;
 use Gemini;
 use Gemini\Enums\ModelType;
@@ -33,6 +34,9 @@ final readonly class AIChatRequestHandlerFactory
 
         #[Autowire(env: 'GEMINI_API_KEY')]
         private string $geminiApiKey,
+
+        #[Autowire(env: 'TASK17_MODEL_ID')]
+        private string $task17ModelId,
     )
     {
     }
@@ -44,21 +48,25 @@ final readonly class AIChatRequestHandlerFactory
             ->withHttpClient($this->psrHttpClient)
             ->make();
 
-        $openAiGpt4oMini = $this->openaiChatAdapterFactory->createChatAdapter(['model' => 'gpt4o-mini']);
-        $openAiGpt4o = $this->openaiChatAdapterFactory->createChatAdapter(['model' => 'gpt4o']);
+        $openAiFactory = fn(string $model) => $this->openaiChatAdapterFactory->createChatAdapter(['model' => $model]);
+
+        $openAiGpt4o = $openAiFactory('gpt4o');
         $gemma = new OllamaChatAdapter(Ollama::factory()->withHttpClient($this->httpClient)->withBaseUrl($this->ollamaEndpoint)->make(), 'gemma:2b');
         $llava = new OllamaChatAdapter(Ollama::factory()->withHttpClient($this->httpClient)->withBaseUrl($this->ollamaEndpoint)->make(), 'llava');
         $geminiPro = new GoogleGeminiChatAdapter($googleGeminiClient, ModelType::GEMINI_PRO->value);
         $geminiProVision = new GoogleGeminiChatAdapter($googleGeminiClient, ModelType::GEMINI_FLASH->value);
 
+        $gpt4oMiniCriteria = [PrivacyCriteria::MEDIUM, CapabilityCriteria::INTERMEDIATE, FeatureCriteria::TEXT_GENERATION, ProviderCriteria::OPENAI];
+
         $decisionTree = new DecisionTree([
-            new DecisionRule($gemma, [PrivacyCriteria::HIGH, CapabilityCriteria::BASIC, FeatureCriteria::TEXT_GENERATION, ProviderCriteria::LOCAL]),
-            new DecisionRule($llava, [PrivacyCriteria::HIGH, CapabilityCriteria::BASIC, FeatureCriteria::IMAGE_VISION, ProviderCriteria::LOCAL]),
-            new DecisionRule($openAiGpt4oMini, [PrivacyCriteria::MEDIUM, CapabilityCriteria::INTERMEDIATE, FeatureCriteria::TEXT_GENERATION, ProviderCriteria::OPENAI]),
-            new DecisionRule($openAiGpt4o, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::TEXT_GENERATION, ProviderCriteria::OPENAI]),
-            new DecisionRule($openAiGpt4o, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::IMAGE_VISION, ProviderCriteria::OPENAI]),
-            new DecisionRule($geminiPro, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::TEXT_GENERATION, ProviderCriteria::GOOGLE]),
-            new DecisionRule($geminiProVision, [PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::IMAGE_VISION, ProviderCriteria::GOOGLE]),
+            new DecisionRule($gemma, [FineTuningCriteria::NONE, PrivacyCriteria::HIGH, CapabilityCriteria::BASIC, FeatureCriteria::TEXT_GENERATION, ProviderCriteria::LOCAL]),
+            new DecisionRule($llava, [FineTuningCriteria::NONE, PrivacyCriteria::HIGH, CapabilityCriteria::BASIC, FeatureCriteria::IMAGE_VISION, ProviderCriteria::LOCAL]),
+            new DecisionRule($openAiFactory('gpt4o-mini'), [FineTuningCriteria::NONE, ...$gpt4oMiniCriteria]),
+            new DecisionRule($openAiGpt4o, [FineTuningCriteria::NONE, PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::TEXT_GENERATION, ProviderCriteria::OPENAI]),
+            new DecisionRule($openAiGpt4o, [FineTuningCriteria::NONE, PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::IMAGE_VISION, ProviderCriteria::OPENAI]),
+            new DecisionRule($geminiPro, [FineTuningCriteria::NONE, PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::TEXT_GENERATION, ProviderCriteria::GOOGLE]),
+            new DecisionRule($geminiProVision, [FineTuningCriteria::NONE, PrivacyCriteria::MEDIUM, CapabilityCriteria::ADVANCED, FeatureCriteria::IMAGE_VISION, ProviderCriteria::GOOGLE]),
+            new DecisionRule($openAiFactory($this->task17ModelId), [FineTuningCriteria::TASK17, ...$gpt4oMiniCriteria]),
         ]);
 
         return new AIChatRequestHandler($decisionTree);
